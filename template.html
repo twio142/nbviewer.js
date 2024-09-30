@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/14.1.2/marked.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js' data-manual></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js' data-manual></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+
+    <script> %nbv% </script>
+    <style type='text/css'>
+      body {
+        font: 10pt Helvetica Neue, Arial, sans-serif;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div id='doc'></div>
+    <script type='application/javascript'>
+      var doc = document.getElementById('doc');
+      var nb = %nb-json%;
+      if (!window.marked || !window.Prism || !window.katex) {
+        throw new Error('expecting libraries marked.js, Prism.js and KaTeX to be present');
+      }
+      const nbv = nbv_constructor(document, {
+        katex: window.katex,
+        prism: window.Prism,
+        marked: window.marked,
+      });
+      nbv.render(nb, doc);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "jsdom": "^25.0.1",
+    "katex": "^0.16.11",
+    "marked": "^14.1.2",
+    "prismjs": "^1.29.0",
+    "uglify-js": "^3.19.3"
+  }
+}
