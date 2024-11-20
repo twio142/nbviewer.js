@@ -5,13 +5,14 @@
 // https://github.com/tuxu/ipynb-quicklook/
 
 const fs = require("fs");
+const {resolve} = require("path");
 
 function previewLocal(nbFile, htmlFile) {
   const marked = require("marked");
   const katex = require("katex");
   const prism = require("prismjs");
   const { JSDOM } = require("jsdom");
-  const { exception } = require("console");
+  // const { exception } = require("console");
   const document = (new JSDOM("")).window.document;
   const nbv = require("./nbv").nbv_constructor(document, {marked, prism, katex});
   const target = document.createElement("div");
@@ -23,8 +24,8 @@ function previewLocal(nbFile, htmlFile) {
 
 function previewOnline(nbFile, htmlFile) {
   const nb = JSON.parse(fs.readFileSync(nbFile));
-  const nbv = fs.readFileSync("nbv.js").toString();
-  const tmpl = fs.readFileSync("template.html").toString();
+  const nbv = fs.readFileSync(resolve(__dirname, "nbv.js")).toString();
+  const tmpl = fs.readFileSync(resolve(__dirname, "template.html")).toString();
   const uglify = require("uglify-js");
   let html = tmpl
     .replace("%nbv%", uglify.minify(nbv).code)
